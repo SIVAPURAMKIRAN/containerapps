@@ -2,7 +2,7 @@ name: testpushimage
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "BuildStudentEpImage" ]
   
 
 jobs:
@@ -21,4 +21,5 @@ jobs:
       run: |
         az login --service-principal -u ${{secrets.user}} -p ${{secrets.password}} -t ${{secrets.azure_tenent_id}} 
         echo  ${{ vars.rootempfoldername }}
+        echo  rootempfoldername
     
