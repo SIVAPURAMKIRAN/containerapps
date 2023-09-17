@@ -30,8 +30,4 @@ jobs:
       run: az account set --subscription ${{secrets.azure_subscription_id}}
     - name: az acr login
       run: |
-        az acr login -n ${{ vars.acrname }} -u ${{secrets.user1}} -p ${{secrets.password1}}  
-		    
-	      
-    
-       
+        az acr login -n ${{ vars.acrname }} -u ${{secrets.user1}} -p ${{secrets.password1}}
