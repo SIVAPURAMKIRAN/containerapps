@@ -30,16 +30,7 @@ jobs:
       run: az account set --subscription ${{secrets.azure_subscription_id}}
     - name: az acr login
       run: |
-        az acr login -n ${{ vars.acrname }} -u ${{secrets.user1}} -p ${{secrets.password1}}
-    - name: create doceker tag
-      shell: pwsh
-      run: |
-        $BuildId= ${{github.run_id}}
-        write-output "$BuildId"
-        write-output ${{ vars.acrname }}.azurecr.io
-        write-output ${{ vars.rootempfoldername }}
-        $acrfqdn="${{ vars.acrname }}.azurecr.io/${{ vars.rootempfoldername }}" + "$BuildId"
-        write-output "imege url is : $scrfqdn"
+        az acr login -n ${{ vars.acrname }} -u ${{secrets.user1}} -p ${{secrets.password1}}  
 		    
 	      
     
