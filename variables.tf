@@ -21,6 +21,15 @@ variable "azurerm_container_registry_Admin_Enabled" {
   type        = string
   description = "ACR Admin Enabled"
 }
+variable "role_definition_name" {
+  type        = string
+  description = "Role Definition Name"
+}
+
+variable "Azure_Role_Assignment_skip_service_principal_aad_check" {
+  type        = string
+  description = "skip service principal aad check"
+}
 variable "subscription_id" {
   type        = string
   description = "Subscription ID"
