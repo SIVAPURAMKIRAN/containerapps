@@ -31,3 +31,14 @@ jobs:
     - name: az acr login
       run: |
         az acr login -n ${{ vars.acrname }} -u ${{secrets.user1}} -p ${{secrets.password1}}
+    - name: create docker tag
+      shell: pwsh
+      run: |
+        $BuildId= ${{github.run_id}}
+        $repositoryname= "employeeapi"
+        write-output $BuildId
+        write-output "acr url is : ${{ vars.acrname }}.azurecr.io"
+        write-output "acr repository name : $repositoryname"
+        $acrfqdn="${{ vars.acrname }}.azurecr.io/$repositoryname" + "$ImageTag"
+        write-output "acr domain name : $acrfqdn"
+      
