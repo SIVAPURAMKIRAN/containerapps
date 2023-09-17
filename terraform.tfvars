@@ -5,5 +5,5 @@ azurerm_container_registry_sku="Basic"
 azurerm_container_registry_Admin_Enabled=true
 subscription_id ="c49dd695-d270-4c17-a735-1aebee5dcfd6"
 tenant_id =  "26e4f2b2-d0c9-4567-95c9-da3b89054326"
-client_id = "f9942a26-4060-4805-89f0-f27d635076ab"
-client_secret = "BwG8Q~t3hfu_cduDxwBlzjqarCAOqhMePNCtJbBA"
+#client_id = "f9942a26-4060-4805-89f0-f27d635076ab"
+#client_secret = "BwG8Q~t3hfu_cduDxwBlzjqarCAOqhMePNCtJbBA"
