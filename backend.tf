@@ -1,9 +1,9 @@
 terraform{
   backend "azurerm" {
-    resource_group_name  = "VisualStudio-rg"
-    storage_account_name = "aaiscopfiles"
-    container_name       = "ferraformstatefiles"
-    key                  = "containerregistry.tfstate"
+    resource_group_name  = "test-stg-act-rg"
+    storage_account_name = "teststgsccount"
+    container_name       = "terraformstatefile"
+    key                  = "registries.tfstate"
     
   }
 }
