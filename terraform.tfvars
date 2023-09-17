@@ -3,5 +3,7 @@ location            = "East US"
 acr_name            = "azurecongtregstry"
 azurerm_container_registry_sku="Basic"
 azurerm_container_registry_Admin_Enabled=true
+role_definition_name="AcrPull"
+Azure_Role_Assignment_skip_service_principal_aad_check=true
 subscription_id ="c49dd695-d270-4c17-a735-1aebee5dcfd6"
 tenant_id =  "26e4f2b2-d0c9-4567-95c9-da3b89054326"
