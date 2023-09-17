@@ -1,0 +1,31 @@
+name: addcontainerregistry
+
+on:
+  push:
+    branches: [ "main" ]   
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    env:
+        ARM_CLIENT_ID: ${{secrets.clientid}}
+        ARM_CLIENT_SECRET: ${{secrets.clientsecret}}
+        ARM_SUBSCRIPTION_ID: ${{secrets.azure_subscription_id}}
+        ARM_TENANT_ID: ${{secrets.azure_tenent_id}}
+    container: 
+      image: kirankumarsivapuram/base_image:3.0             
+
+    steps:
+    - uses: actions/checkout@v3           
+    - name: az login
+      run: |
+
+    - name: Terraform Init      
+      run: terraform init       
+        
+    - name: Terraform Plan
+      run: terraform plan -out="plan.tfplan" -var client_id="${{secrets.clientid}}" -var client_secret="${{secrets.clientsecret}}" 
+    - name: Terraform Apply
+      run: terraform apply -auto-approve "plan.tfplan"
