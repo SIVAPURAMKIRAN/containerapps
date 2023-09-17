@@ -1,0 +1,24 @@
+name: testpushimage
+
+on:
+  push:
+    branches: [ "main" ]
+  
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    env:
+        rootempfoldername: ${{ vars.rootempfoldername }}
+    container: 
+      image: kirankumarsivapuram/base_image:3.0             
+
+    steps:
+    - uses: actions/checkout@v3           
+    - name: az login
+      run: |
+        az login --service-principal -u ${{secrets.user}} -p ${{secrets.password}} -t ${{secrets.azure_tenent_id}} 
+        echo  ${{ vars.rootempfoldername }}
+    
