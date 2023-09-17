@@ -22,7 +22,7 @@ jobs:
     - uses: actions/checkout@v3           
     - name: az login
       run: |
-        az account set --subscription c49dd695-d270-4c17-a735-1aebee5dcfd6        
+             
 
     - name: Terraform Init      
       run: terraform init       
