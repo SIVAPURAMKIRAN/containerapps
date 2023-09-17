@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: false
     env:
-        ARM_CLIENT_ID: ${{secrets.clientid}}
-        ARM_CLIENT_SECRET: ${{secrets.clientsecret}}
+        ARM_CLIENT_ID: ${{secrets.user1}}
+        ARM_CLIENT_SECRET: ${{secrets.password1}}
         ARM_SUBSCRIPTION_ID: ${{secrets.azure_subscription_id}}
         ARM_TENANT_ID: ${{secrets.azure_tenent_id}}
     container: 
@@ -26,6 +26,6 @@ jobs:
       run: terraform init       
         
     - name: Terraform Plan
-      run: terraform plan -out="plan.tfplan" -var client_id="${{secrets.clientid}}" -var client_secret="${{secrets.clientsecret}}" 
+      run: terraform plan -out="plan.tfplan" -var client_id="${{secrets.user1}}" -var client_secret="${{secrets.password1}}" 
     - name: Terraform Apply
       run: terraform apply -auto-approve "plan.tfplan"
