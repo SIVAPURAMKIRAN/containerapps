@@ -1,6 +1,6 @@
 resource_group_name = "lob-poc-rg-aks"
 location            = "East US"
-acr_name            = "acontappacr"
+acr_name            = "azurecontregstry"
 azurerm_container_registry_sku="Basic"
 azurerm_container_registry_Admin_Enabled=true
 subscription_id ="c49dd695-d270-4c17-a735-1aebee5dcfd6"
