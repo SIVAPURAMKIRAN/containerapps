@@ -9,6 +9,11 @@ jobs:
 
     runs-on: ubuntu-latest
     continue-on-error: false
+    env:
+        ARM_CLIENT_ID: ${{secrets.user1}}
+        ARM_CLIENT_SECRET: ${{secrets.password1}}
+        ARM_SUBSCRIPTION_ID: ${{secrets.azure_subscription_id}}
+        ARM_TENANT_ID: ${{secrets.azure_tenent_id}}
    
     container: 
       image: kirankumarsivapuram/base_image:3.0           
@@ -17,6 +22,7 @@ jobs:
     - uses: actions/checkout@v3           
     - name: az login
       run: |
+        az account set --subscription c49dd695-d270-4c17-a735-1aebee5dcfd6        
 
     - name: Terraform Init      
       run: terraform init       
