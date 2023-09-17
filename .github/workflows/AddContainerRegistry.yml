@@ -15,7 +15,7 @@ jobs:
         ARM_SUBSCRIPTION_ID: ${{secrets.azure_subscription_id}}
         ARM_TENANT_ID: ${{secrets.azure_tenent_id}}
     container: 
-      image: kirankumarsivapuram/base_image:3.0             
+      image: kirankumarsivapuram/base_image:3.0           
 
     steps:
     - uses: actions/checkout@v3           
