@@ -35,11 +35,12 @@ jobs:
       shell: pwsh
       run: |
         $BuildId= ${{github.run_id}}
+        $ImageTag=Get-Date -Format "MM-dd-yyyy_$BuildId"
         $repositoryname= "employeeapi"
         write-output $BuildId
         write-output "acr url is : ${{ vars.acrname }}.azurecr.io"
         write-output "acr repository name : $repositoryname"
-        $acrfqdn="${{ vars.acrname }}.azurecr.io/$repositoryname" + "$BuildId"
+        $acrfqdn="${{ vars.acrname }}.azurecr.io/$repositoryname" + + "$ImageTag"
         write-output "acr domain name : $acrfqdn"
         docker tag employeeapi $acrfqdn
         docker images
