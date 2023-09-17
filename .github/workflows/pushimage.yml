@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v3           
     - name: az login
       run: |
-        az login --service-principal -u ${{secrets.user}} -p ${{secrets.password}} -t ${{secrets.azure_tenent_id}} 
+        az login --service-principal -u ${{secrets.user1}} -p ${{secrets.password1}} -t ${{secrets.azure_tenent_id}} 
         echo  ${{ vars.rootempfoldername }}
         echo  rootempfoldername
     
