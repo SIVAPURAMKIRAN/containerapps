@@ -1,0 +1,36 @@
+name: environmentadding
+
+on:
+  push:
+    branches: [ "environmentcreate" ]
+  
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    env:
+        rootempfoldername: ${{ vars.rootempfoldername }}
+    container: 
+      image: kirankumarsivapuram/base_image:3.0             
+
+    steps:
+    - uses: actions/checkout@v3           
+    - name: az login
+      run: |
+        az login --service-principal -u ${{secrets.user1}} -p ${{secrets.password1}} -t ${{secrets.azure_tenent_id}} 
+        echo  ${{ vars.rootempfoldername }}
+    
+    - name: set subscription
+      run: az account set --subscription ${{secrets.azure_subscription_id}}    
+    - name: create container environment
+      shell: pwsh
+      run: |
+        $CONTAINERAPPS_ENVIRONMENT= "tesappone"
+        $RESOURCE_GROUP= "Container-app-rg"
+        $LOCATION= "East US"
+        $workloadprofilename= "myprofile"
+        $Environmenttype= "Workload Profile"
+        az containerapp env create --name $CONTAINERAPPS_ENVIRONMENT --resource-group $RESOURCE_GROUP --location "$LOCATION" --enable-workload-profiles
+        az containerapp env workload-profile add -g $RESOURCE_GROUP -n $CONTAINERAPPS_ENVIRONMENT --workload-profile-name $workloadprofilename --workload-profile-type D4 --min-nodes 1 --max-nodes 2    
