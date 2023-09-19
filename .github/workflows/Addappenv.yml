@@ -41,6 +41,5 @@ jobs:
         write-output "acr url is : $Registryserver"
         $Appcpu = "${{ vars.appcpu }}"
         $Appmemory = "${{ vars.appmemory }}"
-        
-        
-        az containerapp create -n $ContainerRegistry -g $ResourceGroupname --image acrtestpoc.azurecr.io/studente:one --environment $EnvironmentName --ingress $Ingresstype --target-port $Ingressport --registry-server $Registryserver --registry-username $ContainerRegistry --registry-password ${{ secrets.REGISTRYPASSWORD }} --query properties.configuration.ingress.fqdn --cpu $appcpu --memory $Appmemory --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
+        az containerapp create -n cnppocjhijjm -g Container-app-rg --image acrtestpoc.azurecr.io/studente:one --environment container-app-env --ingress external --target-port 80 --registry-server acrtestpoc.azurecr.io --registry-username $ContainerRegistry --registry-password $RegistryPassword --query properties.configuration.ingress.fqdn --cpu 0.25 --memory 0.5Gi --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
+        #az containerapp create -n $ContainerRegistry -g $ResourceGroupname --image acrtestpoc.azurecr.io/studente:one --environment $EnvironmentName --ingress $Ingresstype --target-port $Ingressport --registry-server $Registryserver --registry-username $ContainerRegistry --registry-password ${{ secrets.REGISTRYPASSWORD }} --query properties.configuration.ingress.fqdn --cpu $appcpu --memory $Appmemory --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
