@@ -40,7 +40,7 @@ jobs:
         write-output $BuildId
         write-output "acr url is : ${{ vars.acrname }}.azurecr.io"
         write-output "acr repository name : $repositoryname"
-        $acrfqdn="${{ vars.acrname }}.azurecr.io/$repositoryname" + "$ImageTag"
+        $acrfqdn="${{ vars.acrname }}.azurecr.io/$repositoryname" + "$BuildId"
         write-output "acr domain name : $acrfqdn"
         docker tag employeeapi $acrfqdn
         docker images
