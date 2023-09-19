@@ -33,5 +33,13 @@ jobs:
         $RegistryPassword = "${{ secrets.REGISTRYPASSWORD }}"
         $Imageurl = "${{ vars.IMAGEURL }}"
         $ResourceGroupname = "${{ vars.CONTAINERAPPRGNAME }}"
+        $EnvironmentName="${{ vars.CONTAINERAPPENVNAME }}"
+        $Ingresstype = ${{ vars.ingress }}"
+        $Ingressport = ${{ vars.ingressport }}"
+        $Registryserver="$ContainerRegistry.azurecr.io"
+        write-output "acr url is : $Registryserver"
+        $Appcpu = "${{ vars.appcpu }}"
+        $Appcpu = "${{ vars.appmemory }}"
         
-        az containerapp create -n $ContainerRegistry -g $ResourceGroupname --image $Imageurl --environment container-app-env --ingress external --target-port 80 --registry-server acrtestpoc.azurecr.io --registry-username $ContainerRegistry --registry-password $RegistryPassword --query properties.configuration.ingress.fqdn --cpu 0.25 --memory 0.5Gi --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
+        
+        az containerapp create -n $ContainerRegistry -g $ResourceGroupname --image $Imageurl --environment $EnvironmentName --ingress $Ingresstype --target-port $Ingressport --registry-server $Registryserver --registry-username $ContainerRegistry --registry-password $RegistryPassword --query properties.configuration.ingress.fqdn --cpu $appcpu --memory $appmemory --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
