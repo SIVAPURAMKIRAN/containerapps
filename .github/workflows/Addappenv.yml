@@ -29,18 +29,6 @@ jobs:
       run: |
         [int]$MinReplica = 0
         [int]$MaxReplica = 30
-        $ContainerRegistry = "${{ vars.acrname }}"
-        $RegistryPassword = "CSvdDR/VJRki0dWgukZ4r0TKVSx/lt+AxjZE7sDM22+ACRCxxwgp"
-        #$RegistryPassword = "${{ secrets.REGISTRYPASSWORD }}"
-        $Imageurl = "${{ vars.IMAGEURL }}"
-        write-output "image url is : $Imageurl"        
-        $ResourceGroupname = "${{ vars.CONTAINERAPPRGNAME }}"
-        $EnvironmentName="${{ vars.CONTAINERAPPENVNAME }}"
-        $Ingresstype = "${{ vars.ingress }}"
-        $Ingressport = "${{ vars.ingressport }}"
-        $Registryserver = "$ContainerRegistry.azurecr.io"
-        write-output "acr url is : $Registryserver"
-        $Appcpu = "${{ vars.appcpu }}"
-        $Appmemory = "${{ vars.appmemory }}"
-        az containerapp create -n cnppocjhijjm -g Container-app-rg --image acrtestpoc.azurecr.io/studente:one --environment container-app-env --ingress external --target-port 80 --registry-server acrtestpoc.azurecr.io --registry-username $ContainerRegistry --registry-password $RegistryPassword --query properties.configuration.ingress.fqdn --cpu 0.25 --memory 0.5Gi --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
-        #az containerapp create -n $ContainerRegistry -g $ResourceGroupname --image acrtestpoc.azurecr.io/studente:one --environment $EnvironmentName --ingress $Ingresstype --target-port $Ingressport --registry-server $Registryserver --registry-username $ContainerRegistry --registry-password ${{ secrets.REGISTRYPASSWORD }} --query properties.configuration.ingress.fqdn --cpu $appcpu --memory $Appmemory --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
+        $ContainerRegistry = "acrtestpoc"
+        $RegistryPassword = "CSvdDR/VJRki0dWgukZ4r0TKVSx/lt+AxjZE7sDM22+ACRCxxwgp"   
+        az containerapp create -n cppocjemjjm -g Container-app-rg --image acrtestpoc.azurecr.io/studente:one --environment container-app-env --ingress external --target-port 80 --registry-server acrtestpoc.azurecr.io --registry-username $ContainerRegistry --registry-password $RegistryPassword --query properties.configuration.ingress.fqdn --cpu 0.25 --memory 0.5Gi --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
