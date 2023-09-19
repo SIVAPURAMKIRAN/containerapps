@@ -36,7 +36,7 @@ jobs:
       run: |
         $BuildId= ${{github.run_id}}
         $ImageTag=Get-Date -Format "MM-dd-yyyy_$BuildId"
-        $repositoryname= ${{ vars.REPOSITORYNAME }}
+        $repositoryname= "${{ vars.REPOSITORYNAME }}"
         write-output $BuildId
         write-output "acr url is : ${{ vars.acrname }}.azurecr.io"
         write-output "acr repository name : $repositoryname"
