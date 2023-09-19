@@ -27,7 +27,9 @@ jobs:
     - name: create container environment
       shell: pwsh
       run: |
-        $CONTAINERAPPS_ENVIRONMENT= "tesappone"
+        $CONTAINERAPPS_ENVIRONMENT= "${{ vars.containerappenvname }}"
+        write-output "app environment name is  : $CONTAINERAPPS_ENVIRONMENT"
+        #$CONTAINERAPPS_ENVIRONMENT= "tesappone"
         $RESOURCE_GROUP= "Container-app-rg"
         $LOCATION= "East US"
         $workloadprofilename= "myprofile"
