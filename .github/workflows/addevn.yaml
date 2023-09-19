@@ -31,7 +31,7 @@ jobs:
         $RESOURCE_GROUP= "${{ vars.containerapprgname }}"
         $LOCATION= "${{ vars.containerappenvlocation }}"
         $workloadprofilename= "${{ vars.workloadprofilename }}"
-        $Environmenttype= "${{ vars.appenvplantype }}"       
+        $WORKLOADPROFILETYPE= "${{ vars.WORKLOADPROFILETYPE }}"       
         $minnodes= "${{ vars.minnodes }}"
         $maxnodes= "${{ vars.maxnodes }}"
         write-output "app environment name is  : $CONTAINERAPPS_ENVIRONMENT"
@@ -42,4 +42,4 @@ jobs:
         #$Environmenttype= "Workload Profile"
         az containerapp env create --name $CONTAINERAPPS_ENVIRONMENT --resource-group $RESOURCE_GROUP --location "$LOCATION" --enable-workload-profiles
         #az containerapp env workload-profile add -g $RESOURCE_GROUP -n $CONTAINERAPPS_ENVIRONMENT --workload-profile-name $workloadprofilename --workload-profile-type $Environmenttype --min-nodes $minnodes --max-nodes $maxnode    
-        az containerapp env workload-profile add -g $RESOURCE_GROUP -n $CONTAINERAPPS_ENVIRONMENT --workload-profile-name $workloadprofilename --workload-profile-type D4 --min-nodes 1 --max-nodes 2  
+        az containerapp env workload-profile add -g $RESOURCE_GROUP -n $CONTAINERAPPS_ENVIRONMENT --workload-profile-name $workloadprofilename --workload-profile-type $WORKLOADPROFILETYPE --min-nodes $minnodes --max-nodes $maxnode
