@@ -32,6 +32,9 @@ jobs:
         $ContainerRegistry = "${{ vars.acrname }}"
         $RegistryPassword = "${{ secrets.REGISTRYPASSWORD }}"
         $Imageurl = "${{ vars.IMAGEURL }}"
+        write-output "image url is : $Imageurl"
+        $Imageurl2=${{ vars.IMAGEURL }}
+        write-output "image2 url is : $Imageurl2"
         $ResourceGroupname = "${{ vars.CONTAINERAPPRGNAME }}"
         $EnvironmentName="${{ vars.CONTAINERAPPENVNAME }}"
         $Ingresstype = "${{ vars.ingress }}"
@@ -42,4 +45,4 @@ jobs:
         $Appmemory = "${{ vars.appmemory }}"
         
         
-        az containerapp create -n $ContainerRegistry -g $ResourceGroupname --image $Imageurl --environment $EnvironmentName --ingress $Ingresstype --target-port $Ingressport --registry-server $Registryserver --registry-username $ContainerRegistry --registry-password $RegistryPassword --query properties.configuration.ingress.fqdn --cpu $appcpu --memory $Appmemory --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
+        az containerapp create -n $ContainerRegistry -g $ResourceGroupname --image ${{ vars.IMAGEURL }} --environment $EnvironmentName --ingress $Ingresstype --target-port $Ingressport --registry-server $Registryserver --registry-username $ContainerRegistry --registry-password $RegistryPassword --query properties.configuration.ingress.fqdn --cpu $appcpu --memory $Appmemory --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
