@@ -39,7 +39,7 @@ jobs:
         $Registryserver = "$ContainerRegistry.azurecr.io"
         write-output "acr url is : $Registryserver"
         $Appcpu = "${{ vars.appcpu }}"
-        $Appcpu = "${{ vars.appmemory }}"
+        $Appmemory = "${{ vars.appmemory }}"
         
         
-        az containerapp create -n $ContainerRegistry -g $ResourceGroupname --image $Imageurl --environment $EnvironmentName --ingress $Ingresstype --target-port $Ingressport --registry-server $Registryserver --registry-username $ContainerRegistry --registry-password $RegistryPassword --query properties.configuration.ingress.fqdn --cpu $appcpu --memory $appmemory --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
+        az containerapp create -n $ContainerRegistry -g $ResourceGroupname --image $Imageurl --environment $EnvironmentName --ingress $Ingresstype --target-port $Ingressport --registry-server $Registryserver --registry-username $ContainerRegistry --registry-password $RegistryPassword --query properties.configuration.ingress.fqdn --cpu $appcpu --memory $Appmemory --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
