@@ -43,4 +43,4 @@ jobs:
         $Appmemory = "${{ vars.appmemory }}"
         
         
-        az containerapp create -n $ContainerRegistry -g $ResourceGroupname --image acrtestpoc.azurecr.io/studente:one --environment $EnvironmentName --ingress $Ingresstype --target-port $Ingressport --registry-server $Registryserver --registry-username $ContainerRegistry --registry-password $RegistryPassword --query properties.configuration.ingress.fqdn --cpu $appcpu --memory $Appmemory --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
+        az containerapp create -n $ContainerRegistry -g $ResourceGroupname --image acrtestpoc.azurecr.io/studente:one --environment $EnvironmentName --ingress $Ingresstype --target-port $Ingressport --registry-server $Registryserver --registry-username $ContainerRegistry --registry-password ${{ secrets.REGISTRYPASSWORD }} --query properties.configuration.ingress.fqdn --cpu $appcpu --memory $Appmemory --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
