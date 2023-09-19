@@ -30,6 +30,6 @@ jobs:
         [int]$MinReplica = 0
         [int]$MaxReplica = 30
         $ContainerRegistry = "acrtestpoc"
-        $RegistryPassword = "CSvdDR/VJRki0dWgukZ4r0TKVSx/lt+AxjZE7sDM22+ACRCxxwgp"
-        
-        az containerapp create -n cppocjemjjm -g Container-app-rg --image acrtestpoc.azurecr.io/studente:one --environment vamdevenv --ingress external --target-port 80 --registry-server acrtestpoc.azurecr.io --registry-username $ContainerRegistry --registry-password ${{secrets.REGISTRYPASSWORD}} --query properties.configuration.ingress.fqdn --cpu 0.25 --memory 0.5Gi --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
+        #$RegistryPassword = "CSvdDR/VJRki0dWgukZ4r0TKVSx/lt+AxjZE7sDM22+ACRCxxwgp"
+        $ImageURL="acrtestpoc.azurecr.io/studente:one"
+        az containerapp create -n cppocjemjjm -g Container-app-rg --image $ImageURL --environment vamdevenv --ingress external --target-port 80 --registry-server acrtestpoc.azurecr.io --registry-username $ContainerRegistry --registry-password ${{secrets.REGISTRYPASSWORD}} --query properties.configuration.ingress.fqdn --cpu 0.25 --memory 0.5Gi --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
