@@ -32,9 +32,7 @@ jobs:
         $ContainerRegistry = "${{ vars.acrname }}"
         $RegistryPassword = "${{ secrets.REGISTRYPASSWORD }}"
         $Imageurl = "${{ vars.IMAGEURL }}"
-        write-output "image url is : $Imageurl"
-        $Imageurl2=${{ vars.IMAGEURL }}
-        write-output "image2 url is : $Imageurl2"
+        write-output "image url is : $Imageurl"        
         $ResourceGroupname = "${{ vars.CONTAINERAPPRGNAME }}"
         $EnvironmentName="${{ vars.CONTAINERAPPENVNAME }}"
         $Ingresstype = "${{ vars.ingress }}"
