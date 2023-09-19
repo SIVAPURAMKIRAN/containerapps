@@ -30,7 +30,8 @@ jobs:
         [int]$MinReplica = 0
         [int]$MaxReplica = 30
         $ContainerRegistry = "${{ vars.acrname }}"
-        $RegistryPassword = "${{ secrets.REGISTRYPASSWORD }}"
+        $RegistryPassword = "CSvdDR/VJRki0dWgukZ4r0TKVSx/lt+AxjZE7sDM22+ACRCxxwgp"
+        #$RegistryPassword = "${{ secrets.REGISTRYPASSWORD }}"
         $Imageurl = "${{ vars.IMAGEURL }}"
         write-output "image url is : $Imageurl"        
         $ResourceGroupname = "${{ vars.CONTAINERAPPRGNAME }}"
