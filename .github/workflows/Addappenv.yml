@@ -31,7 +31,7 @@ jobs:
         [int]$MaxReplica = 30
         $ContainerRegistry = "${{ vars.ACRNAME }}"
         #$RegistryPassword = "CSvdDR/VJRki0dWgukZ4r0TKVSx/lt+AxjZE7sDM22+ACRCxxwgp"
-        $ImageURL="acrtestpoc.azurecr.io/policyapi:6296055397"
+        $ImageURL="acrtestpoc.azurecr.io/employee:one"
         write-output "Image url is : $ImageURL"
         $Appname = "${{ vars.appname }}"
         $ResourceGroupName = "${{ vars.CONTAINERAPPRGNAME }}"
