@@ -1,4 +1,4 @@
-name: addenvironment
+name: newcontinerapp
 
 on:
   push:
@@ -24,14 +24,14 @@ jobs:
     
     - name: set subscription
       run: az account set --subscription ${{secrets.azure_subscription_id}}    
-    - name: create container environment
+    - name: create container app
       shell: pwsh
       run: |
         [int]$MinReplica = 0
         [int]$MaxReplica = 30
-        $ContainerRegistry = "acrtestpoc"
+        $ContainerRegistry = "${{ vars.ACRNAME }}"
         #$RegistryPassword = "CSvdDR/VJRki0dWgukZ4r0TKVSx/lt+AxjZE7sDM22+ACRCxxwgp"
-        $ImageURL="acrtestpoc.azurecr.io/studente:one"
+        $ImageURL="acrtestpoc.azurecr.io/policyapi:6295670893"
         write-output "Image url is : $ImageURL"
         $Appname = "${{ vars.appname }}"
         $ResourceGroupName = "${{ vars.CONTAINERAPPRGNAME }}"
@@ -48,6 +48,6 @@ jobs:
         write-output $Appname
         write-output $ResourceGroupName
         write-output $AppEnvironmentName
-        az containerapp create -n $Appname -g $ResourceGroupName --image $ImageURL --environment $AppEnvironmentName --ingress $Ingress --target-port $IngressPort --registry-server $Registryserver --registry-username ${{secrets.SERVICEPRINCIPLEID}} --registry-password ${{secrets.SERVICEPRINCIPLEPASSWORD}} --query properties.configuration.ingress.fqdn --cpu $AppCpu --memory $AppMemory --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name $ScaleRuleHTTPName --scale-rule-type $ScaleRuleType  --scale-rule-http-concurrency $ScalRuleconcurrency
+        az containerapp create -n $Appname -g $ResourceGroupName --image $ImageURL --environment $AppEnvironmentName --ingress $Ingress --target-port $IngressPort --registry-server $Registryserver --registry-username ${{secrets.ACRPULLUSER}} --registry-password ${{secrets.ACRPULLPASSWORD}} --query properties.configuration.ingress.fqdn --cpu $AppCpu --memory $AppMemory --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name $ScaleRuleHTTPName --scale-rule-type $ScaleRuleType  --scale-rule-http-concurrency $ScalRuleconcurrency
         #az containerapp create -n $Appname -g $ResourceGroupName --image $ImageURL --environment $AppEnvironmentName --ingress external --target-port 80 --registry-server acrtestpoc.azurecr.io --registry-username $ContainerRegistry --registry-password ${{secrets.REGISTRYPASSWORD}} --query properties.configuration.ingress.fqdn --cpu 0.25 --memory 0.5Gi --min-replicas $MinReplica --max-replicas $MaxReplica --scale-rule-name azure-http-rule --scale-rule-type http --scale-rule-http-concurrency 20
         
