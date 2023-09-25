@@ -24,13 +24,13 @@ jobs:
     - name: build docker image
       run: |
         cd ./${{ vars.rootempfoldername }}/
-        docker build . -t employeeapi
+        docker build . -t policyapi
         cd ..
     - name: set subscription
       run: az account set --subscription ${{secrets.azure_subscription_id}}
     - name: az acr login
       run: |
-        az acr login -n ${{ vars.acrname }} -u ${{secrets.user1}} -p ${{secrets.password1}}
+        az acr login -n ${{ vars.acrname }} -u ${{secrets.ACRPUSHUSER}} -p ${{secrets.ACRPUSHPASSWORD}}
     - name: create docker tag
       shell: pwsh
       run: |
@@ -42,7 +42,7 @@ jobs:
         write-output "acr repository name : $repositoryname"
         $acrfqdn="${{ vars.acrname }}.azurecr.io/$repositoryname" + "$BuildId"
         write-output "acr domain name : $acrfqdn"
-        docker tag employeeapi $acrfqdn
+        docker tag policyapi $acrfqdn
         docker images
         write-host "pushing to acr"
         docker push $acrfqdn
