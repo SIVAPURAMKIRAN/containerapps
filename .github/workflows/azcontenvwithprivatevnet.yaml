@@ -2,7 +2,7 @@ name: azcontenvwithprivatevnet
 
 on:
   push:
-    branches: [ "environmentcreate1" ]
+    branches: [ "environmentcreate" ]
   
 
 jobs:
